@@ -1,0 +1,52 @@
+DRS OS
+Copyright the DRS OS project contributors
+
+Product attribution and provenance
+==================================
+
+DRS OS is an original operating-system project built on top of the Android
+Open Source Project (AOSP), https://source.android.com.
+
+1. AOSP FOUNDATION
+   DRS OS incorporates, and plans to incorporate, components of AOSP.
+   AOSP source code is made available under its own license terms
+   (predominantly the Apache License, Version 2.0, with Linux-kernel and
+   some user-space components under GPL/LGPL and other permissive licenses
+   as applicable). All upstream copyright notices, license texts, and
+   attribution requirements are preserved and will be shipped with any
+   future distribution of DRS OS. The upstream manifest commit used for any
+   build will be recorded in the project decision log so that provenance
+   can be audited.
+
+2. TRADEMARKS
+   Android is a trademark of Google LLC. This project references Android
+   and AOSP solely to describe the upstream open-source foundation.
+   DRS OS is an independent project: it is not affiliated with, endorsed
+   by, sponsored by, or derived from the products of Google LLC, any
+   device manufacturer, or any other third-party operating-system vendor.
+   "DRS OS" and the DRS visual identity described under branding/ are
+   original project branding.
+
+3. BRANDING HYGIENE
+   DRS OS will not present third-party developer brands, device-maker
+   brands, or unrelated product brands in user-facing system surfaces.
+   Where upstream AOSP strings or assets remain for functional reasons
+   (for example, in code comments or build metadata), they are attributed
+   to their origin and do not constitute DRS OS branding.
+
+4. AI COMPONENTS
+   DRS OS contains no artificial-intelligence components: no AI/ML models,
+   no generative systems, no cloud AI APIs, and no AI assistant features.
+   All product behavior is deterministic, rule-based, and local. This
+   restriction is normative; see docs/decisions/ADR-0004-no-ai-policy.md.
+
+5. THIRD-PARTY MATERIALS
+   No third-party fonts, icons, images, or code are currently bundled in
+   this repository. Future additions must be recorded in tools/README.md
+   with license, source, and version information before inclusion.
+   Candidate fonts and their licenses are documented in
+   branding/typography.md; none are redistributed yet.
+
+6. SIGNING MATERIAL
+   This repository intentionally contains no private keys, certificates,
+   or signing configuration. See docs/security/key-management.md.

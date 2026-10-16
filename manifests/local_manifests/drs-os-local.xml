@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DRS OS local manifest — TEMPLATE. SPDX-License-Identifier: Apache-2.0
+
+  STATUS: TEMPLATE ONLY. Do not use with `repo sync`.
+  * The host "git.invalid" is deliberately DNS-invalid: no DRS-owned Git
+    repositories exist yet (creation requires explicit authorization).
+  * Every remote, project name, and revision below is a placeholder.
+  * Before any real use: substitute audited remotes, pin explicit
+    revisions (SHA or tag) per ADR-0002, and record the upstream
+    manifest commit SHA per ADR-0001.
+-->
+<manifest>
+  <!-- Placeholder remote; replace fetch/review with authorized remotes. -->
+  <remote name="drs-os"
+          fetch="https://git.invalid/drs-os/"
+          review="https://git.invalid/" />
+
+  <!-- Each DRS project is pinned explicitly; no <default> block is used
+       so this file can never re-point upstream projects. Revisions below
+       are placeholders — replace with audited commits at integration. -->
+  <project path="device/drs"
+           name="drs-device"
+           remote="drs-os"
+           revision="refs/heads/main" />
+
+  <project path="vendor/drs"
+           name="drs-vendor"
+           remote="drs-os"
+           revision="refs/heads/main" />
+
+  <project path="packages/apps/DRSSecurityCenter"
+           name="drs-security-center"
+           remote="drs-os"
+           revision="refs/heads/main" />
+
+  <project path="packages/apps/DRSAutomation"
+           name="drs-automation"
+           remote="drs-os"
+           revision="refs/heads/main" />
+
+  <project path="packages/apps/DRSFiles"
+           name="drs-files"
+           remote="drs-os"
+           revision="refs/heads/main" />
+
+  <project path="overlays"
+           name="drs-overlays"
+           remote="drs-os"
+           revision="refs/heads/main" />
+</manifest>

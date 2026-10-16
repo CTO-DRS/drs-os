@@ -1,0 +1,40 @@
+# DRS OS project scaffold
+# Never commit secrets, keys, or build outputs.
+
+# ---- AOSP / build outputs (future use) ----
+/.repo/
+/out/
+soong_output/
+*.img
+*.zip
+*.tar.gz
+
+# ---- Signing material: hard-deny (defense in depth; scripts also scan) ----
+*.pk8
+*.x509.pem
+*.pem
+*.key
+*.keystore
+*.jks
+*.avbprivkey
+*.avbpubkey
+
+# ---- Local environment / credentials ----
+.env
+.env.*
+*.local
+credentials/
+secrets/
+
+# ---- Editors / OS cruft ----
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# ---- Logs and transient test output ----
+*.log
+/tmp/
