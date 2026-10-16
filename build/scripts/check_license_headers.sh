@@ -33,7 +33,8 @@ while IFS= read -r -d '' f; do
 done < <(
   find "$ROOT/build" "$ROOT/tests" "$ROOT/scripts" \
     -type f -name '*.sh' -print0 2>/dev/null
-  find "$ROOT/manifests" -type f -name '*.xml' -print0 2>/dev/null
+  find "$ROOT/manifests" -type f \
+    \( -name '*.xml' -o -name '*.xml.template' \) -print0 2>/dev/null
 )
 
 if [ "$checked" -eq 0 ]; then

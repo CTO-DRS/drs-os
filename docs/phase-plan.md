@@ -37,11 +37,46 @@ executed with real exit statuses recorded in the Phase 1 report. No AOSP
 download, no build, no flashing, no paid resources, no external
 publication.
 
-## Phase 2 — Integration readiness (PROPOSED — not started)
+## Phase 2 — Integration readiness, native design & security foundation (COMPLETE)
 
-Goal: reach a state where an AOSP checkout can be executed on a compliant
-host the moment one is available, with everything pre-validated. Requires
-authorization. Proposed work items:
+Delivered (all changes to the existing scaffold; nothing discarded):
+
+- **Placeholder hazard remediation:** the executable-shaped placeholder
+  manifest was moved out of the production path to
+  `manifests/templates/drs-os-local.xml.template` (non-executable by
+  extension); `manifests/local_manifests/` is now empty-by-policy;
+  `check_manifests.sh` hardened to REJECT placeholder remotes in
+  production scope (negative control demonstrated: exit 1).
+- **Integration design:** integration map with 4-way classification
+  (upstream / DRS-existing / proposed / hardware-dependent),
+  upstream-sync & pinning procedure, dependency-provenance policy,
+  integration-readiness report (docs/build/integration-readiness.md).
+- **Security foundation:** control ledger re-based on the 5-status
+  taxonomy (upstream capability / DRS design requirement /
+  implementation pending / test pending / verified implementation),
+  implementation checklist with evidence-gated milestones, security
+  test plan (20 tests, verified-vs-planned stated honestly).
+- **Native UI specification:** 12 system surfaces with upstream
+  components, integration points, lifecycle, RTL, a11y, performance,
+  and pre-integration tests (docs/ui/native-system-surfaces.md).
+- **Deterministic automation:** rule-engine specification + Python
+  reference model + 25 unit tests — executed green after catching and
+  fixing 3 real test defects; no AI anywhere (ADR-0004).
+- **Tooling hardening:** unsafe-command scan, endpoint allowlist,
+  automation sub-check, honest-tripwire disclaimers.
+- **Audit findings recorded:** sandbox mode-bit drift (644→755 across
+  all files, content identical) detected via git status and corrected;
+  validation baseline reproduced before changes.
+
+Blocked-on (honest): compliant build host; DRS repository
+authorization. No AOSP download/build, no flashing, no paid services,
+no external publication.
+
+## Phase 3 — Checkout & first boot (PROPOSED — requires authorization)
+
+Goal: execute the gated checkout on a compliant host. Prerequisites:
+host checklist passed, DRS remotes authorized and verified, branch
+re-verified, manifest SHA pinned. Proposed work items:
 
 1. **Host preparation checklist run-through** (docs/build/prerequisites.md)
    on the target development host; record tool versions into the decision

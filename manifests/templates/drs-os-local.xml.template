@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  DRS OS local manifest — TEMPLATE. SPDX-License-Identifier: Apache-2.0
+  DRS OS local manifest — ILLUSTRATIVE TEMPLATE. SPDX-License-Identifier: Apache-2.0
 
-  STATUS: TEMPLATE ONLY. Do not use with `repo sync`.
+  STATUS: INACTIVE AND NON-BUILDABLE BY CONSTRUCTION.
+  * The ".template" extension is deliberate: the repo tool only consumes
+    "*.xml" files, so this file can never be picked up by a real sync.
   * The host "git.invalid" is deliberately DNS-invalid: no DRS-owned Git
     repositories exist yet (creation requires explicit authorization).
   * Every remote, project name, and revision below is a placeholder.
-  * Before any real use: substitute audited remotes, pin explicit
-    revisions (SHA or tag) per ADR-0002, and record the upstream
-    manifest commit SHA per ADR-0001.
+  * A production manifest is created ONLY by copying this file to
+    manifests/local_manifests/drs-os-local.xml, replacing every
+    placeholder with an audited, verified value (ADR-0002), and passing
+    build/scripts/check_manifests.sh in production mode — which REJECTS
+    placeholder remotes. See docs/build/integration-readiness.md.
+  Do not run `repo sync` against any manifest derived from this template
+  until every value is verified (Phase 2 constraint).
 -->
 <manifest>
   <!-- Placeholder remote; replace fetch/review with authorized remotes. -->

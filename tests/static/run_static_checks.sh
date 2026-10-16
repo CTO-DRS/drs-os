@@ -70,6 +70,13 @@ else
   fail "license header check reported violations (see output above)"
 fi
 
+echo "== 6. manifest validation (production placeholder rejection) =="
+if bash "$ROOT/build/scripts/check_manifests.sh"; then
+  :
+else
+  fail "manifest validation reported failures (see output above)"
+fi
+
 echo
 if [ "$failed" -gt 0 ]; then
   printf 'RESULT: FAIL — %d failing check(s)\n' "$failed"

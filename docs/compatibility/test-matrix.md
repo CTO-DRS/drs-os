@@ -4,15 +4,19 @@ Status: layers marked **ACTIVE** run today with recorded results; all other
 layers are planned and gated on a real AOSP checkout on a compliant host.
 No test may be reported as passed if it was not executed.
 
-## Layer 0 — Repository static checks (ACTIVE, Phase 1)
+## Layer 0 — Repository static checks (ACTIVE — expanded Phase 2)
 
 | Check | Tool | Trigger | Status |
 |---|---|---|---|
 | Required files exist, non-empty, non-placeholder | validate_project.sh | every change | ACTIVE |
 | Shell syntax (bash -n) on all scripts | validate_project.sh / run_static_checks.sh | every change | ACTIVE |
-| Secret scan (token/key patterns) | validate_project.sh, run_static_checks.sh | every change | ACTIVE |
+| Secret scan (token/key patterns) — tripwire, not proof | validate_project.sh, run_static_checks.sh | every change | ACTIVE |
 | No AI/cloud endpoints referenced | validate_project.sh | every change | ACTIVE |
 | XML manifest well-formedness + structure | check_manifests.sh | manifest change | ACTIVE |
+| **Placeholder-remote rejection in production manifests** | check_manifests.sh (Phase 2) | manifest change | ACTIVE (negative control verified) |
+| **External endpoint allowlist** | validate_project.sh (Phase 2) | every change | ACTIVE |
+| **Unsafe-command scan of shell scripts** | validate_project.sh (Phase 2) | every change | ACTIVE |
+| **Automation reference-model unit tests (25)** | tests/automation/run_automation_tests.sh | rule-engine change | ACTIVE |
 | SPDX license headers | check_license_headers.sh | script/XML change | ACTIVE |
 | Sepolicy guard (no permissive, justified rules only) | check_sepolicy.sh | sepolicy change | ACTIVE |
 | CRLF / oversized files | run_static_checks.sh | every change | ACTIVE |

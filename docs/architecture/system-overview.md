@@ -207,7 +207,10 @@ re-merge cost in the decision log.
 
 ## 5. Cross-references
 
+- Integration map (4-way component classification): docs/architecture/integration-map.md
+- Native UI integration points per surface: docs/ui/native-system-surfaces.md
 - Subsystem boundary matrix: docs/architecture/subsystem-boundaries.md
 - Data flows and privacy: docs/architecture/data-flow.md
 - Threat model: docs/security/threat-model.md
-- Control inventory with Designed/Implemented status: docs/security/security-controls.md
+- Control inventory with status taxonomy: docs/security/security-controls.md
+- Integration readiness & blockers: docs/build/integration-readiness.md

@@ -38,23 +38,28 @@ phase.
 ```
 drs-os/
 ├── docs/
-│   ├── architecture/    System architecture and subsystem boundaries
-│   ├── security/        Threat model, controls, updates, keys, vulnerabilities
+│   ├── architecture/    System architecture, boundaries, integration map
+│   ├── security/        Threat model, control ledger, checklists, test plan
 │   ├── compatibility/   App compatibility strategy and test matrix
-│   ├── build/           Prerequisites, zero-cost workflow, reproducibility
+│   ├── ui/              Native system interface specs (12 surfaces)
+│   ├── automation/      Deterministic rule-engine specification (no AI)
+│   ├── build/           Prerequisites, readiness, sync & provenance policy
 │   ├── decisions/       Architecture Decision Records (ADRs)
-│   └── phase-plan.md    Phase status and Phase 2 proposal
-├── manifests/           AOSP manifest strategy + local-manifest template
+│   └── phase-plan.md    Phase status ledger
+├── manifests/           Production local-manifests (empty by policy) +
+│                        non-executable templates/ (placeholder isolation)
 ├── device/drs/          Future Cuttlefish-derived device layer (empty scaffold)
 ├── vendor/drs/          DRS-owned vendor configuration (empty scaffold)
 ├── packages/apps/       Future DRS system apps (empty scaffold)
 ├── overlays/            Runtime resource overlays (RRO) for theming (scaffold)
 ├── system/sepolicy/     SELinux policy scaffold — deliberately rule-free
-├── build/               Build prerequisites docs + static validation scripts
+├── build/               Build docs + hardened static validation scripts
 ├── scripts/             Reserved for developer workflow helpers
-├── tests/               static/ (active) · security/ · compatibility/ (planned)
+├── tests/               static/ · automation/ (active) · security/ ·
+│                        compatibility/ (planned)
 ├── branding/            DRS OS design system: colors, typography, icons
-└── tools/               Tool inventory and third-party dependency policy
+└── tools/               Tool inventory, provenance policy, automation
+                         reference model (testable without AOSP)
 ```
 
 ## Validating this repository
@@ -79,8 +84,9 @@ and [docs/build/zero-cost-workflow.md](docs/build/zero-cost-workflow.md).
 | Phase | Scope | Status |
 |---|---|---|
 | Phase 0 | Environment & feasibility audit | Complete (2026-10-16); verdict: build infeasible in sandbox, feasible on compliant host |
-| Phase 1 | Project scaffolding, architecture, security design, validation tooling | Complete (this repository) |
-| Phase 2 | Host preparation and AOSP integration readiness | Proposed — requires explicit authorization; see [docs/phase-plan.md](docs/phase-plan.md) |
+| Phase 1 | Project scaffolding, architecture, security design, validation tooling | Complete |
+| Phase 2 | Integration readiness, native UI specs, security foundation, automation reference model | Complete (2026-10-16) |
+| Phase 3 | Gated checkout & first boot on compliant host | Proposed — requires authorization; see [docs/phase-plan.md](docs/phase-plan.md) |
 
 ## License and attribution
 

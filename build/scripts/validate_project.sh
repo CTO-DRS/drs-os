@@ -9,6 +9,10 @@
 # static-validation success, NOT a platform build success, and does not
 # imply any OS component exists or works.
 #
+# Honesty limitation (stated in output too): the secret scan and endpoint
+# scans are pattern tripwires — they CANNOT guarantee the absence of all
+# secret forms, vulnerabilities, or malicious content.
+#
 # Exit codes: 0 = all executed checks passed (skips reported, not hidden).
 #             1 = one or more checks failed.
 set -u -o pipefail
@@ -51,7 +55,8 @@ REQUIRED=(
   docs/decisions/ADR-0004-no-ai-policy.md
   manifests/README.md
   manifests/local_manifests/README.md
-  manifests/local_manifests/drs-os-local.xml
+  manifests/templates/README.md
+  manifests/templates/drs-os-local.xml.template
   device/drs/README.md
   vendor/drs/README.md
   packages/apps/README.md
@@ -72,6 +77,19 @@ REQUIRED=(
   branding/typography.md
   branding/icon-guidelines.md
   tools/README.md
+  tools/automation-reference/README.md
+  tools/automation-reference/rule_engine.py
+  docs/build/integration-readiness.md
+  docs/build/upstream-sync.md
+  docs/build/dependency-provenance.md
+  docs/architecture/integration-map.md
+  docs/ui/native-system-surfaces.md
+  docs/automation/rule-engine-spec.md
+  docs/security/implementation-checklist.md
+  docs/security/test-plan.md
+  tests/automation/README.md
+  tests/automation/run_automation_tests.sh
+  tests/automation/test_rule_engine.py
 )
 for rel in "${REQUIRED[@]}"; do
   f="$ROOT/$rel"
@@ -147,6 +165,51 @@ else
   fi
 fi
 
+section "Unsafe-command scan (shell scripts)"
+# Tripwire for destructive patterns in any shell script. Scans scripts only
+# (docs may legitimately discuss commands).
+unsafe=""
+while IFS= read -r -d '' s; do
+  hit="$(grep -nE \
+    -e 'rm[[:space:]]+-rf?[[:space:]]+/(|[[:space:]])' \
+    -e 'dd[[:space:]].*of=/dev/' \
+    -e 'mkfs\.[a-z0-9]+' \
+    -e 'chmod[[:space:]]+-R[[:space:]]+777[[:space:]]+/' \
+    -e '(curl|wget)[^|]*\|[[:space:]]*(ba|z)?sh' \
+    -e '>+[[:space:]]*/dev/(sd|nvme|hd)' \
+    -e '\:\(\)\{[[:space:]]*:\|:&' \
+    "$s" 2>/dev/null | sed "s|^|${s#"$ROOT"/}:|" || true)"
+  [ -n "$hit" ] && unsafe="$unsafe$hit
+"
+done < <(find "$ROOT" -type f -name '*.sh' -not -path '*/.git/*' -print0 2>/dev/null)
+if [ -n "$unsafe" ]; then
+  fail "unsafe/destructive command pattern in scripts:"
+  printf '%s\n' "$unsafe"
+else
+  pass "no destructive command patterns in shell scripts"
+fi
+
+section "External endpoint allowlist"
+# Every http(s) URL host in tracked text must be on the verified allowlist.
+# git.invalid is the DOCUMENTED placeholder host (templates/docs only —
+# production manifests reject it separately via check_manifests.sh).
+ALLOWED_HOSTS='source.android.com
+android.googlesource.com
+www.apache.org
+editorconfig.org
+git.invalid'
+unknown_hosts="$(grep -rhoE 'https?://[A-Za-z0-9.-]+' --exclude-dir=.git "$ROOT" 2>/dev/null \
+  | sed -E 's#^https?://##; s#\.+$##' | sort -u \
+  | while IFS= read -r h; do
+      printf '%s\n' "$ALLOWED_HOSTS" | grep -qxF "$h" || echo "$h"
+    done || true)"
+if [ -n "$unknown_hosts" ]; then
+  fail "unverified external host(s) referenced (add to allowlist with a recorded reason in docs/build/dependency-provenance.md, or remove):"
+  printf '%s\n' "$unknown_hosts"
+else
+  pass "all referenced hosts are on the verified allowlist"
+fi
+
 section "Markdown internal links"
 if command -v python3 >/dev/null 2>&1; then
   py_out="$(python3 - "$ROOT" <<'PY'
@@ -195,19 +258,22 @@ else
 fi
 
 section "Sub-checks"
-for checker in check_manifests.sh check_sepolicy.sh check_license_headers.sh; do
-  s="$ROOT/build/scripts/$checker"
+for checker in check_manifests.sh check_sepolicy.sh check_license_headers.sh run_automation_tests.sh; do
+  case "$checker" in
+    run_automation_tests.sh) s="$ROOT/tests/automation/$checker";;
+    *) s="$ROOT/build/scripts/$checker";;
+  esac
   if [ ! -f "$s" ]; then
     fail "$checker missing"
     continue
   fi
   out="$(bash "$s" 2>&1)"; rc=$?
   printf '%s\n' "$out" | sed 's/^/    /'
-  if [ "$rc" -eq 0 ]; then
-    pass "$checker"
-  else
-    fail "$checker exited $rc"
-  fi
+  case $rc in
+    0) pass "$checker";;
+    2) skip "$checker (environmental skip reported above)";;
+    *) fail "$checker exited $rc";;
+  esac
 done
 
 section "Summary"
@@ -218,3 +284,5 @@ if [ "$failed" -gt 0 ]; then
 fi
 echo "RESULT: PASS — repository static validation successful."
 echo "NOTE: static validation success ≠ platform build success; no AOSP code was compiled."
+echo "NOTE: pattern scans (secrets, endpoints, unsafe commands) are tripwires —"
+echo "      they do NOT guarantee absence of every secret or vulnerability."

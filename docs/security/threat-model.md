@@ -81,7 +81,17 @@ gated overlays and whitelisted privapps.
 ## 7. Verification evidence
 
 Current: **none for product claims** (no product exists). Evidence that
-does exist today: repository static checks (secret scan, sepolicy guard,
-no-AI scan) executed with recorded exit statuses in the Phase 1 report.
+does exist today, scope = this repository:
+
+- Phase 1: baseline static validation (60 passed / 0 failed / 2 skipped,
+  exit 0).
+- Phase 2: baseline reproduction (all three Phase 1 scripts re-executed,
+  exit 0); hardened manifest validation with production placeholder
+  rejection (negative control: placeholder manifest in production scope →
+  exit 1, as designed); endpoint allowlist and unsafe-command scans added
+  and executed; automation reference-model unit tests executed with real
+  pass counts (docs/build/integration-readiness.md records commands and
+  outputs).
+
 Every future security claim must cite an executed test and its result;
 claims without evidence are a documentation bug.

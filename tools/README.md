@@ -6,11 +6,13 @@
 |---|---|---|---|---|
 | bash | 5.2.37 (measured in sandbox) | GPL-3.0-or-later | system | validation scripts |
 | git | 2.47.3 (measured) | GPL-2.0-or-later | system | version control |
-| python3 | 3.12.15 (measured) | PSF-2.0 | system | XML/link validation (stdlib only) |
+| python3 | 3.12.15 (measured) | PSF-2.0 | system | XML/link validation + automation reference model (stdlib only) |
 
 No third-party code, fonts, icons, or libraries are vendored in this
-repository. The Phase 1 tooling uses only the tools above (host-provided,
-not redistributed by this repo).
+repository. The tooling uses only the tools above (host-provided, not
+redistributed by this repo). The automation reference model
+(automation-reference/rule_engine.py) is project-authored, stdlib-only,
+and pinned by unit tests in tests/automation/.
 
 ## Policy for future additions
 

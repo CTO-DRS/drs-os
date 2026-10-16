@@ -1,9 +1,16 @@
 # DRS OS Design System — Overview and Screen Specifications
 
-**Status: implementation specification (Phase 1).** These documents define
+**Status: implementation specification (Phase 1 visual system; Phase 2
+added the engineering-side integration spec).** These documents define
 what DRS OS interfaces *must* look like and how they *will* be built; they
 are not claims that any screen runs anywhere. No runnable UI exists; no
 asset binaries ship in this repository.
+
+**Engineering counterpart:** for each of the 12 system surfaces — upstream
+component, integration points, lifecycle, RTL, accessibility, performance,
+and pre-integration tests — see
+[docs/ui/native-system-surfaces.md](../docs/ui/native-system-surfaces.md).
+This file owns the visual language; that file owns the platform wiring.
 
 ## Identity
 
