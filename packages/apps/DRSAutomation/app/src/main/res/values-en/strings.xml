@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- English locale (values-en). Key set must match values/ exactly. -->
+<resources>
+    <string name="app_name">DRS Automation</string>
+
+    <string name="state_enabled">Enabled</string>
+    <string name="state_disabled">Disabled</string>
+
+    <string name="action_new_rule">New rule</string>
+    <string name="action_open_audit">Audit log</string>
+    <string name="action_details">Details</string>
+    <string name="action_back">Back</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_dry_run">Dry run</string>
+    <string name="action_run_now">Run now</string>
+    <string name="action_enable">Enable</string>
+    <string name="action_disable">Disable</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_label">Action</string>
+
+    <string name="trigger_battery_below">Battery below threshold</string>
+    <string name="trigger_power_connected">Charger state</string>
+    <string name="trigger_time_daily">Daily time</string>
+    <string name="trigger_time_daily_planned">The daily time trigger needs a platform-level scheduler and is not available yet; it is not offered here so no dead control is shown.</string>
+
+    <string name="reason_fired">All conditions held — action will execute</string>
+    <string name="reason_rule_disabled">The rule is disabled</string>
+    <string name="reason_trigger_not_active">The trigger is not active right now</string>
+    <string name="reason_condition_failed">A condition did not hold</string>
+    <string name="reason_requires_unlock">The device is locked and the rule requires unlock</string>
+    <string name="reason_max_runs_reached">The rule reached its daily run limit</string>
+
+    <string name="exec_executed">Executed</string>
+    <string name="exec_failed">Failed</string>
+    <string name="exec_cancelled">Cancelled</string>
+    <string name="exec_skipped_limit">Skipped by the execution limit</string>
+    <string name="exec_no_executor">No executor registered</string>
+
+    <string name="empty_rules">No rules yet. Create one to start — evaluation is fully deterministic and contains no AI.</string>
+    <string name="empty_audit">No audit records yet.</string>
+    <string name="audit_title">Audit log</string>
+    <string name="audit_scope_note">Each evaluation records: the rule, the decision, and the decision time. No context values or personal data are stored. The log is kept on-device only.</string>
+    <string name="dry_run_title">Dry-run result</string>
+    <string name="executions_title">Latest execution results</string>
+    <string name="editor_title">New rule</string>
+
+    <string name="field_rule_id">ID (English, no spaces)</string>
+    <string name="field_rule_name">Rule name</string>
+    <string name="field_explanation">User-visible explanation (shown in UI and audit)</string>
+    <string name="field_trigger">Trigger</string>
+    <string name="field_threshold_1_99">Battery threshold (1–99%)</string>
+    <string name="field_action">Action (from the closed registry)</string>
+    <string name="field_max_runs_per_day">Max runs per day</string>
+    <string name="field_requires_unlock">Require device unlock</string>
+
+    <string name="error_required_fields">ID, name, and explanation are required.</string>
+    <string name="error_validation">The rule failed validation — review the values and try again.</string>
+    <string name="error_manual_needs_no_trigger">A manual rule needs no stored trigger; use \"Run now\" from the rule details.</string>
+    <string name="error_time_daily_planned">The daily time trigger is not available yet (needs a platform-level scheduler).</string>
+    <string name="error_invalid_trigger">Unknown trigger kind.</string>
+    <string name="error_rule_missing">The rule is missing (it may have been deleted).</string>
+    <string name="warn_store_corrupted">Saved rules could not be read (corrupted data) — the app started with an empty list for integrity. No rules were partially recovered.</string>
+</resources>

@@ -38,3 +38,10 @@ Thumbs.db
 # ---- Logs and transient test output ----
 *.log
 /tmp/
+
+# Kotlin/JVM build outputs (generated; run build/scripts/run_core_tests.sh)
+components/*/build/
+packages/apps/*/app/build/
+packages/apps/*/.gradle/
+packages/apps/*/build/
+.gradle/

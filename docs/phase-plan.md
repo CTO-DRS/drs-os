@@ -72,7 +72,46 @@ Blocked-on (honest): compliant build host; DRS repository
 authorization. No AOSP download/build, no flashing, no paid services,
 no external publication.
 
-## Phase 3 — Checkout & first boot (PROPOSED — requires authorization)
+## Phase 3 — Native system implementation & executable foundation (COMPLETE, 2026-10-16)
+
+Authorized directive: convert the Phase 2 foundation into real, native,
+testable components. Delivered (details and evidence in docs/phase3/):
+
+- **Audit-first:** Phase 2 state reproduced (git d7c182c clean after
+  the known sandbox mode-bit drift was corrected; all seven Phase 2
+  validation runs re-executed with identical results).
+- **Pure-Kotlin cores (compiled + unit-tested in the sandbox, 188/188):**
+  `components/foundation` (25), `components/engine-core` (104 — the
+  Kotlin implementation of the Phase 2 rule-engine spec, including
+  **34 differential tests against the Python reference model** via a
+  committed, byte-deterministic vector file), `components/security-core`
+  (18), `components/settings-core` (41). ADR-0005 records the
+  module-strategy decision.
+- **Three Android apps, source-complete with pinned Gradle config and
+  Arabic-default RTL resources:** DRSSecurityCenter, DRSAutomation,
+  DRSSettings. Build status: **SOURCE IMPLEMENTED — BUILD NOT VERIFIED**
+  (no Android SDK in the sandbox — stated everywhere it matters). The
+  automation app's pure logic was additionally JVM-verified (9/9).
+- **Toolchain with provenance:** kotlinc 2.0.21 + JUnit console 1.10.2
+  downloaded free with SHA-256 verification; reproducible runner
+  `build/scripts/run_core_tests.sh` with honest BLOCKED semantics.
+- **AOSP integration artifacts:** inactive Android.bp templates,
+  integration-point matrix, intentionally empty privapp-permissions
+  policy (platform/integration/).
+- **Validation extended:** check_phase3_code.sh (19 checks: AI-dep
+  tripwire, secrets, XML well-formedness, ar/en parity, RTL/locale
+  manifests, SPDX/package/TODO scans, URL allowlist, catalog
+  consistency) + run_core_tests.sh wired into validate_project.sh.
+- **Security review** with 4 findings (1 medium) found-by-testing and
+  fixed (docs/phase3/SECURITY_REVIEW.md); limitations ledger
+  (docs/phase3/KNOWN_LIMITATIONS.md).
+- No AOSP download/build, no flashing, no paid services, no external
+  publication, no secrets, no AI (ADR-0004 enforced by new tripwires).
+
+Blocked-on (honest): Android SDK host (app builds), compliant AOSP host
+(platform integration), DRS repository authorization (remotes).
+
+## Phase 4 — Checkout & first boot (PROPOSED — requires authorization)
 
 Goal: execute the gated checkout on a compliant host. Prerequisites:
 host checklist passed, DRS remotes authorized and verified, branch
@@ -104,9 +143,9 @@ re-verified, manifest SHA pinned. Proposed work items:
 7. **Security test scaffolding** under tests/security/ (checklist-based
    review gates for future SELinux and permission changes).
 
-Explicitly out of scope for Phase 2: full AOSP sync (requires compliant
-host + authorization), any signing-key generation, any public repository
-publication, any cloud account creation.
+Explicitly out of scope until Phase 4 is authorized: full AOSP sync
+(requires compliant host + authorization), any signing-key generation,
+any public repository publication, any cloud account creation.
 
 ## Standing rule
 

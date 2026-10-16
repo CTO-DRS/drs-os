@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# DRS Security Center — Soong integration template.
+# STATUS: INACTIVE TEMPLATE — not consumed by any build in this
+# repository. Requires a real AOSP checkout (ADR-0001) and verified
+# upstream availability of every androidx artifact as a Soong module
+# before this can compile. Do not enable anywhere.
+
+android_app {
+    name: "DRSSecurityCenter",
+    pkgid: "com.drs.os.securitycenter",
+
+    srcs: [
+        "app/src/main/kotlin/**/*.kt",
+        # Pure Kotlin cores are consumed from the DRS components tree at
+        # integration time (paths decided when the DRS repositories exist).
+        # Placeholder paths are FORBIDDEN here; this template states the
+        # dependency without inventing a location.
+    ],
+    // DRS-CORE-SOURCE: components/foundation + components/security-core
+    // (wiring is a real-tree integration task, see platform/integration/README.md)
+
+    resource_dirs: ["app/src/main/res"],
+    manifest: "app/src/main/AndroidManifest.xml",
+
+    static_libs: [
+        "androidx.core_core-ktx",
+        "androidx.activity_activity-compose",
+        "androidx.compose.ui_ui",
+        "androidx.compose.material3_material3",
+        "androidx.compose.runtime_runtime",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.lifecycle_lifecycle-viewmodel-compose",
+        "androidx.navigation_navigation-compose",
+    ],
+
+    platform_apis: false,   // v1 is a standard app; privileged stage is separate
+    privileged: false,
+    certificate: "platform", // placeholder for integration review — MUST be
+                             // re-decided at checkout (own key ceremony per
+                             // docs/security/key-management.md)
+    optimize: { enabled: false },
+
+    // aapt v2 handles localeConfig + resourceConfigurations (ar, en)
+    min_sdk_version: "29",
+    target_sdk_version: "35", // REVIEW at checkout: the platform tree
+                              // defines the authoritative level (ADR-0001)
+    sdk_version: "system_current",
+}

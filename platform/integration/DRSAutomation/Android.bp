@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# DRS Automation — Soong integration template.
+# STATUS: INACTIVE TEMPLATE — see platform/integration/README.md.
+
+android_app {
+    name: "DRSAutomation",
+    pkgid: "com.drs.os.automation",
+
+    srcs: [
+        "app/src/main/kotlin/**/*.kt",
+    ],
+    // DRS-CORE-SOURCE: components/foundation + components/engine-core
+
+    resource_dirs: ["app/src/main/res"],
+    manifest: "app/src/main/AndroidManifest.xml",
+
+    static_libs: [
+        "androidx.core_core-ktx",
+        "androidx.activity_activity-compose",
+        "androidx.compose.ui_ui",
+        "androidx.compose.material3_material3",
+        "androidx.compose.runtime_runtime",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.lifecycle_lifecycle-viewmodel-compose",
+    ],
+
+    platform_apis: false,
+    privileged: false,      // automation stays unprivileged; any future
+                            // privileged action needs its own ADR + consent UI
+    optimize: { enabled: false },
+    min_sdk_version: "29",
+    target_sdk_version: "35", // REVIEW at checkout (ADR-0001)
+    sdk_version: "system_current",
+}
+
+# Background scheduling (WorkManager) integration note:
+# TIME_DAILY rules require a scheduler. On AOSP the supported path is
+# WorkManager (bundled) or the platform JobScheduler — the choice is a
+# real-tree decision with battery and timing implications documented in
+# docs/phase3/AOSP_INTEGRATION_STATUS.md. Nothing here enables it.

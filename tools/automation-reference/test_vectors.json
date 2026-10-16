@@ -1,0 +1,1263 @@
+[
+ {
+  "case_id": "quiet_fires_in_window",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1320,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": "set_dnd_on",
+   "explanation": "يُفعّل عدم الإزعاج",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "23:30",
+     "kind": "TIME_WINDOW",
+     "start": "21:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "id": "quiet_hours",
+   "max_runs_per_day": 1,
+   "name": "Quiet hours",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "22:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "quiet_edge_start_inclusive",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1260,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "23:30",
+     "kind": "TIME_WINDOW",
+     "start": "21:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "id": "quiet_hours",
+   "max_runs_per_day": 1,
+   "name": "Quiet hours",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "22:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "quiet_edge_end_exclusive",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1410,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "23:30",
+     "kind": "TIME_WINDOW",
+     "start": "21:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "id": "quiet_hours",
+   "max_runs_per_day": 1,
+   "name": "Quiet hours",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "22:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "quiet_outside_window",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1200,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "23:30",
+     "kind": "TIME_WINDOW",
+     "start": "21:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "id": "quiet_hours",
+   "max_runs_per_day": 1,
+   "name": "Quiet hours",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "22:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "quiet_wrong_minute",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1321,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "23:30",
+     "kind": "TIME_WINDOW",
+     "start": "21:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "id": "quiet_hours",
+   "max_runs_per_day": 1,
+   "name": "Quiet hours",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "22:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "quiet_disabled",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1320,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "fired": false,
+   "reason": "rule-disabled"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "23:30",
+     "kind": "TIME_WINDOW",
+     "start": "21:00"
+    }
+   ],
+   "enabled": false,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "id": "quiet_hours",
+   "max_runs_per_day": 1,
+   "name": "Quiet hours",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "22:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "quiet_max_runs_reached",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1320,
+   "runs_today": 1,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "fired": false,
+   "reason": "max-runs-reached"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "23:30",
+     "kind": "TIME_WINDOW",
+     "start": "21:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "id": "quiet_hours",
+   "max_runs_per_day": 1,
+   "name": "Quiet hours",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "22:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "quiet_locked_device",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": false,
+   "now_minutes": 1320,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "fired": false,
+   "reason": "requires-unlock"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "23:30",
+     "kind": "TIME_WINDOW",
+     "start": "21:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "id": "quiet_hours",
+   "max_runs_per_day": 1,
+   "name": "Quiet hours",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "22:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "quiet_runs_zero_ok",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1320,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": "set_dnd_on",
+   "explanation": "يُفعّل عدم الإزعاج",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "23:30",
+     "kind": "TIME_WINDOW",
+     "start": "21:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "يُفعّل عدم الإزعاج",
+   "id": "quiet_hours",
+   "max_runs_per_day": 1,
+   "name": "Quiet hours",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "22:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "batt_fires_below_threshold",
+  "context": {
+   "battery": 19,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 600,
+   "runs_today": 0,
+   "weekday": 0
+  },
+  "expected": {
+   "action_id": "enable_battery_saver",
+   "explanation": "موفّر الطاقة",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "enable_battery_saver",
+   "conditions": [
+    {
+     "days": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "kind": "DAY_OF_WEEK"
+    }
+   ],
+   "enabled": true,
+   "explanation": "موفّر الطاقة",
+   "id": "battery_saver",
+   "max_runs_per_day": 4,
+   "name": "Battery saver",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "BATTERY_BELOW",
+    "threshold": 20
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "batt_not_active_at_threshold",
+  "context": {
+   "battery": 20,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 600,
+   "runs_today": 0,
+   "weekday": 0
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "موفّر الطاقة",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "enable_battery_saver",
+   "conditions": [
+    {
+     "days": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "kind": "DAY_OF_WEEK"
+    }
+   ],
+   "enabled": true,
+   "explanation": "موفّر الطاقة",
+   "id": "battery_saver",
+   "max_runs_per_day": 4,
+   "name": "Battery saver",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "BATTERY_BELOW",
+    "threshold": 20
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "batt_threshold_one_edge",
+  "context": {
+   "battery": 0,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 600,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": "enable_battery_saver",
+   "explanation": "explanation",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "enable_battery_saver",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "explanation",
+   "id": "b1",
+   "max_runs_per_day": 10,
+   "name": "b",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "BATTERY_BELOW",
+    "threshold": 1
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "batt_threshold_ninetynine_edge",
+  "context": {
+   "battery": 98,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 600,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": "enable_battery_saver",
+   "explanation": "explanation",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "enable_battery_saver",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "explanation",
+   "id": "b99",
+   "max_runs_per_day": 10,
+   "name": "b",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "BATTERY_BELOW",
+    "threshold": 99
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "batt_condition_weekend_blocks",
+  "context": {
+   "battery": 10,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 600,
+   "runs_today": 0,
+   "weekday": 5
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "موفّر الطاقة",
+   "fired": false,
+   "reason": "condition-failed"
+  },
+  "rule": {
+   "action_id": "enable_battery_saver",
+   "conditions": [
+    {
+     "days": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "kind": "DAY_OF_WEEK"
+    }
+   ],
+   "enabled": true,
+   "explanation": "موفّر الطاقة",
+   "id": "battery_saver",
+   "max_runs_per_day": 4,
+   "name": "Battery saver",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "BATTERY_BELOW",
+    "threshold": 20
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "batt_condition_sunday_passes",
+  "context": {
+   "battery": 10,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 600,
+   "runs_today": 0,
+   "weekday": 6
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "موفّر الطاقة",
+   "fired": false,
+   "reason": "condition-failed"
+  },
+  "rule": {
+   "action_id": "enable_battery_saver",
+   "conditions": [
+    {
+     "days": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "kind": "DAY_OF_WEEK"
+    }
+   ],
+   "enabled": true,
+   "explanation": "موفّر الطاقة",
+   "id": "battery_saver",
+   "max_runs_per_day": 4,
+   "name": "Battery saver",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "BATTERY_BELOW",
+    "threshold": 20
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "morning_fires_unlocked",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 450,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": "set_theme_light",
+   "explanation": "ثيم الصباح",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "set_theme_light",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "ثيم الصباح",
+   "id": "morning_theme",
+   "max_runs_per_day": 2,
+   "name": "Morning theme",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "07:30"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "morning_waits_for_unlock",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": false,
+   "now_minutes": 450,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "ثيم الصباح",
+   "fired": false,
+   "reason": "requires-unlock"
+  },
+  "rule": {
+   "action_id": "set_theme_light",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "ثيم الصباح",
+   "id": "morning_theme",
+   "max_runs_per_day": 2,
+   "name": "Morning theme",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "07:30"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "morning_second_run_of_day",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 451,
+   "runs_today": 2,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "ثيم الصباح",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_theme_light",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "ثيم الصباح",
+   "id": "morning_theme",
+   "max_runs_per_day": 2,
+   "name": "Morning theme",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "07:30"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "morning_first_of_two_runs",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 451,
+   "runs_today": 1,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "ثيم الصباح",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_theme_light",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "ثيم الصباح",
+   "id": "morning_theme",
+   "max_runs_per_day": 2,
+   "name": "Morning theme",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "07:30"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "power_fires_on_state_true",
+  "context": {
+   "battery": 80,
+   "charging": true,
+   "device_unlocked": true,
+   "now_minutes": 600,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": "set_theme_dark",
+   "explanation": "e",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "set_theme_dark",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "e",
+   "id": "charger_dark",
+   "max_runs_per_day": 10,
+   "name": "Charger dark",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "POWER_CONNECTED",
+    "state": true
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "power_not_active_when_false",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 600,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "e",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_theme_dark",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "e",
+   "id": "charger_dark",
+   "max_runs_per_day": 10,
+   "name": "Charger dark",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "POWER_CONNECTED",
+    "state": true
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "power_disabled_wins_first",
+  "context": {
+   "battery": 80,
+   "charging": true,
+   "device_unlocked": true,
+   "now_minutes": 600,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "e",
+   "fired": false,
+   "reason": "rule-disabled"
+  },
+  "rule": {
+   "action_id": "set_theme_dark",
+   "conditions": [],
+   "enabled": false,
+   "explanation": "e",
+   "id": "charger_dark",
+   "max_runs_per_day": 10,
+   "name": "Charger dark",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "POWER_CONNECTED",
+    "state": true
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "midnight_at_start",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1410,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": "set_dnd_on",
+   "explanation": "e",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "02:00",
+     "kind": "TIME_WINDOW",
+     "start": "22:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "e",
+   "id": "night_span",
+   "max_runs_per_day": 10,
+   "name": "Night span",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "23:30"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "midnight_after_wrap",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 90,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "e",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "02:00",
+     "kind": "TIME_WINDOW",
+     "start": "22:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "e",
+   "id": "night_span",
+   "max_runs_per_day": 10,
+   "name": "Night span",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "23:30"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "midnight_end_exclusive",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 120,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "e",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "02:00",
+     "kind": "TIME_WINDOW",
+     "start": "22:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "e",
+   "id": "night_span",
+   "max_runs_per_day": 10,
+   "name": "Night span",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "23:30"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "midnoon_outside",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 720,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "e",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_dnd_on",
+   "conditions": [
+    {
+     "end": "02:00",
+     "kind": "TIME_WINDOW",
+     "start": "22:00"
+    }
+   ],
+   "enabled": true,
+   "explanation": "e",
+   "id": "night_span",
+   "max_runs_per_day": 10,
+   "name": "Night span",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "23:30"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "gap_before_inverted_start_fails",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1395,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "e",
+   "fired": false,
+   "reason": "condition-failed"
+  },
+  "rule": {
+   "action_id": "set_dnd_off",
+   "conditions": [
+    {
+     "end": "23:00",
+     "kind": "TIME_WINDOW",
+     "start": "23:30"
+    }
+   ],
+   "enabled": true,
+   "explanation": "e",
+   "id": "empty_gap",
+   "max_runs_per_day": 10,
+   "name": "Empty gap",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "23:15"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "gap_inside_inverted_passes",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 1415,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "e",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_dnd_off",
+   "conditions": [
+    {
+     "end": "23:00",
+     "kind": "TIME_WINDOW",
+     "start": "23:30"
+    }
+   ],
+   "enabled": true,
+   "explanation": "e",
+   "id": "empty_gap",
+   "max_runs_per_day": 10,
+   "name": "Empty gap",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "23:15"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "days_monday",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 540,
+   "runs_today": 0,
+   "weekday": 0
+  },
+  "expected": {
+   "action_id": "set_theme_light",
+   "explanation": "e",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "set_theme_light",
+   "conditions": [
+    {
+     "days": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "kind": "DAY_OF_WEEK"
+    }
+   ],
+   "enabled": true,
+   "explanation": "e",
+   "id": "all_days",
+   "max_runs_per_day": 10,
+   "name": "all",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "09:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "days_sunday",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 540,
+   "runs_today": 0,
+   "weekday": 6
+  },
+  "expected": {
+   "action_id": "set_theme_light",
+   "explanation": "e",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "set_theme_light",
+   "conditions": [
+    {
+     "days": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "kind": "DAY_OF_WEEK"
+    }
+   ],
+   "enabled": true,
+   "explanation": "e",
+   "id": "all_days",
+   "max_runs_per_day": 10,
+   "name": "all",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "09:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "days_wrong_minute",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 541,
+   "runs_today": 0,
+   "weekday": 6
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "e",
+   "fired": false,
+   "reason": "trigger-not-active"
+  },
+  "rule": {
+   "action_id": "set_theme_light",
+   "conditions": [
+    {
+     "days": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "kind": "DAY_OF_WEEK"
+    }
+   ],
+   "enabled": true,
+   "explanation": "e",
+   "id": "all_days",
+   "max_runs_per_day": 10,
+   "name": "all",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "09:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "no_unlock_fires_locked",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": false,
+   "now_minutes": 600,
+   "runs_today": 0,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": "set_theme_light",
+   "explanation": "e",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "set_theme_light",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "e",
+   "id": "no_unlock",
+   "max_runs_per_day": 10,
+   "name": "n",
+   "requires_unlock": false,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "10:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "default_max_at_nine",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 660,
+   "runs_today": 9,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": "set_dnd_off",
+   "explanation": "e",
+   "fired": true,
+   "reason": "fired"
+  },
+  "rule": {
+   "action_id": "set_dnd_off",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "e",
+   "id": "ten",
+   "max_runs_per_day": 10,
+   "name": "t",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "11:00"
+   },
+   "user_consented_actions": []
+  }
+ },
+ {
+  "case_id": "default_max_at_ten",
+  "context": {
+   "battery": 80,
+   "charging": false,
+   "device_unlocked": true,
+   "now_minutes": 660,
+   "runs_today": 10,
+   "weekday": 2
+  },
+  "expected": {
+   "action_id": null,
+   "explanation": "e",
+   "fired": false,
+   "reason": "max-runs-reached"
+  },
+  "rule": {
+   "action_id": "set_dnd_off",
+   "conditions": [],
+   "enabled": true,
+   "explanation": "e",
+   "id": "ten",
+   "max_runs_per_day": 10,
+   "name": "t",
+   "requires_unlock": true,
+   "trigger": {
+    "kind": "TIME_DAILY",
+    "time": "11:00"
+   },
+   "user_consented_actions": []
+  }
+ }
+]

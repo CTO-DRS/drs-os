@@ -55,3 +55,24 @@ inventory in tools/README.md is the enforced state.
    allowlist (validated per change by validate_project.sh); a new
    domain requires adding it to the allowlist **with a recorded reason**
    in the same change.
+
+## 5. Phase 3 additions (2026-10-16)
+
+Allowlist additions, with reasons:
+
+| Host | Reason | Verified |
+|---|---|---|
+| `schemas.android.com` | XML namespace identifier in Android manifests/resources (`xmlns:android`, `xmlns:tools`) — an identifier, never fetched | n/a (identifier) |
+| `github.com` + `objects.githubusercontent.com` | Kotlin compiler 2.0.21 release download (JetBrains) | HTTPS 200 + SHA-256 verified |
+| `repo1.maven.org` | JUnit Platform console standalone 1.10.2 (Maven Central) | HTTPS 200 + SHA-256 verified |
+| `services.gradle.org`, `download.gradle.org`, `dl.google.com` | documented future Android build hosts (SDK/Gradle distributions); probed reachable (200) in Phase 3, nothing downloaded | probed only |
+
+Toolchain artifacts (downloaded OUTSIDE the repository, hashed in
+tools/README.md): kotlin-compiler-2.0.21.zip (85,822,011 B),
+junit-platform-console-standalone-1.10.2.jar (2,680,679 B). Neither is
+vendored, redistributed, or a product dependency.
+
+Future Android build dependencies (AGP/Compose/androidx) are pinned as
+versions in `gradle/libs.versions.toml` catalogs but were NOT resolved
+or downloaded (no Android SDK in the sandbox). Their first real
+resolution happens on a capable build host, recorded here afterwards.

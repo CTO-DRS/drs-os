@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+      Zero dangerous permissions in v1. Notes:
+      * The v1 action registry posts no notifications and toggles no
+        radios; DND actions need the user-granted notification-policy
+        SPECIAL access (requested in-system, never silently).
+      * Battery/charging state comes from the permissionless sticky
+        battery broadcast.
+      * Background scheduling (WorkManager) is a documented next step;
+        nothing runs while the app is not in the foreground.
+    -->
+
+    <application
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_drs_launcher"
+        android:supportsRtl="true"
+        android:localeConfig="@xml/locales_config"
+        android:theme="@android:style/Theme.DeviceDefault.DayNight"
+        tools:targetApi="33">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

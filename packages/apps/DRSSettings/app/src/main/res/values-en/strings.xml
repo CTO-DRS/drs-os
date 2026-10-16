@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- English locale (values-en). Key set must match values/ exactly. -->
+<resources>
+    <string name="app_name">DRS Settings</string>
+
+    <string name="settings_title">DRS OS settings</string>
+    <string name="entry_language">Language</string>
+    <string name="entry_theme">Appearance</string>
+    <string name="entry_privacy_security">Privacy &amp; security</string>
+    <string name="entry_automation">Automation</string>
+    <string name="entry_about">About DRS OS</string>
+
+    <string name="language_title">Language</string>
+    <string name="language_arabic">العربية (default)</string>
+    <string name="language_english">English</string>
+    <string name="language_hint">The language applies to DRS apps instantly via per-app locales.</string>
+
+    <string name="theme_title">Appearance</string>
+    <string name="theme_system">Follow system</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_hint">Themes are restricted to the contrast-verified variants in colors.md; a failing combination cannot be selected.</string>
+
+    <string name="privacy_security_title">Privacy &amp; security</string>
+    <string name="privacy_security_open_center">Open DRS Security Center</string>
+    <string name="privacy_security_center_missing">DRS Security Center is not installed on this device.</string>
+    <string name="privacy_security_open_system">Open system settings</string>
+    <string name="privacy_shortcuts_note">Shortcuts only open the apps/screens themselves; this app stores no data from them.</string>
+
+    <string name="automation_title">Automation</string>
+    <string name="automation_master">Allow automation rules</string>
+    <string name="automation_dry_run_default">Dry-run first (default for new runs)</string>
+    <string name="automation_scope_note">These preferences are stored locally in this app (v1). A shared policy store across DRS apps requires platform integration and comes later.</string>
+    <string name="automation_state_on">Allowed</string>
+    <string name="automation_state_off">Not allowed</string>
+
+    <string name="about_title">About DRS OS</string>
+    <string name="about_version">App version:</string>
+    <string name="about_version_code">Version code:</string>
+    <string name="about_policy_ai">This system uses no artificial intelligence or machine learning — every decision is an explicit deterministic rule (policy ADR-0004).</string>
+    <string name="about_provenance_note">Build details (build time and repository revision) are added by the build pipeline at platform integration; this standalone build shows the version only.</string>
+    <string name="about_notice">DRS OS is based on the Android Open Source Project (AOSP). Android is a trademark of Google LLC and is not part of DRS branding.</string>
+
+    <string name="error_store_write_failed">The setting could not be saved locally — the change was not applied.</string>
+    <string name="recovered_from_corrupted">Defaults were restored because the stored settings data was corrupted.</string>
+</resources>

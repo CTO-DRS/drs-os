@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- English locale (values-en). Key set must match values/ exactly. -->
+<resources>
+    <string name="app_name">DRS Security Center</string>
+
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_checklist">Checklist</string>
+    <string name="nav_privacy">Privacy</string>
+    <string name="nav_status">System status</string>
+
+    <string name="state_pass">Pass</string>
+    <string name="state_warning">Warning</string>
+    <string name="state_unavailable">Unavailable</string>
+    <string name="state_notchecked">Not checked</string>
+
+    <string name="banner_pass">All available checks pass</string>
+    <string name="banner_warning">One or more items need attention</string>
+    <string name="banner_unavailable">Some states cannot be verified in this environment</string>
+    <string name="banner_notchecked">Checks have not run yet</string>
+
+    <string name="check_screen_lock_title">Screen lock</string>
+    <string name="check_device_encryption_title">Device encryption</string>
+    <string name="check_security_patch_level_title">Security patch level</string>
+    <string name="check_verified_boot_title">Verified boot</string>
+    <string name="check_permissions_inventory_title">App permission inventory</string>
+    <string name="check_automation_rules_review_title">Automation rules review</string>
+
+    <string name="check_screen_lock_pass_detail">A screen lock is configured and healthy.</string>
+    <string name="check_screen_lock_warning_detail">No screen lock is configured. Set a PIN, pattern, or biometric lock.</string>
+    <string name="check_screen_lock_unavailable_detail">Screen lock state could not be read in this environment.</string>
+    <string name="check_screen_lock_notchecked_detail">Screen lock was not checked in this session.</string>
+
+    <string name="check_device_encryption_pass_detail">Device storage encryption is active.</string>
+    <string name="check_device_encryption_warning_detail">Device storage encryption is not active.</string>
+    <string name="check_device_encryption_unavailable_detail">Encryption state could not be read in this environment.</string>
+    <string name="check_device_encryption_notchecked_detail">Encryption was not checked in this session.</string>
+
+    <string name="check_security_patch_level_pass_detail">The platform reports an up-to-date security patch level.</string>
+    <string name="check_security_patch_level_warning_detail">The platform did not report a security patch level.</string>
+    <string name="check_security_patch_level_unavailable_detail">The patch level could not be read in this environment.</string>
+    <string name="check_security_patch_level_notchecked_detail">The patch level was not checked in this session.</string>
+
+    <string name="check_verified_boot_pass_detail">The boot chain is verified (green state).</string>
+    <string name="check_verified_boot_warning_detail">The verified-boot state needs review.</string>
+    <string name="check_verified_boot_unavailable_detail">Reading verified-boot state requires platform integration and is unavailable to a standalone app.</string>
+    <string name="check_verified_boot_notchecked_detail">Verified boot was not checked in this session.</string>
+
+    <string name="check_permissions_inventory_pass_detail">Permission usage data is readable.</string>
+    <string name="check_permissions_inventory_warning_detail">Permission usage data exists but needs review.</string>
+    <string name="check_permissions_inventory_unavailable_detail">Permission-usage APIs are privileged; a standalone app cannot reach them. This check becomes available after platform integration.</string>
+    <string name="check_permissions_inventory_notchecked_detail">The permission inventory has not run in this session.</string>
+
+    <string name="check_automation_rules_review_pass_detail">Automation rules are readable and reviewable.</string>
+    <string name="check_automation_rules_review_warning_detail">Some automation rules need review.</string>
+    <string name="check_automation_rules_review_unavailable_detail">Automation rule state lives in DRS Automation; the cross-app read path is not implemented yet.</string>
+    <string name="check_automation_rules_review_notchecked_detail">Automation rules were not reviewed in this session.</string>
+
+    <string name="privacy_title">Privacy</string>
+    <string name="privacy_what_this_app_can_inspect">What this app can inspect now</string>
+    <string name="privacy_no_permissions_requested">This version of the app requests no permissions. It reads only permissionless APIs and states clearly what it cannot read instead of pretending success.</string>
+    <string name="privacy_device_settings">Device privacy settings</string>
+    <string name="privacy_device_settings_hint">Shortcuts open the system\'s own settings — this app reads no data from them.</string>
+    <string name="privacy_open_system_settings">System settings</string>
+    <string name="privacy_open_security_settings">Security settings</string>
+    <string name="privacy_open_privacy_settings">Privacy dashboard</string>
+    <string name="privacy_open_unavailable">This screen is not available on this device</string>
+
+    <string name="status_title">System status</string>
+    <string name="status_source_note">Every value below is read from a real platform API, with its source shown next to it. Anything unreadable is shown as Unavailable with the reason.</string>
+    <string name="status_row_device_secure">Screen lock (KeyguardManager)</string>
+    <string name="status_row_encryption">Storage encryption (DevicePolicyManager)</string>
+    <string name="status_row_patch">Patch level (Build.VERSION.SECURITY_PATCH)</string>
+    <string name="status_row_verified_boot">Verified boot (platform)</string>
+    <string name="status_row_permissions">Permission usage (privileged)</string>
+    <string name="status_row_automation">Automation rules (DRS Automation)</string>
+    <string name="status_value_true">Enabled</string>
+    <string name="status_value_false">Disabled</string>
+    <string name="status_unavailable">Unavailable</string>
+    <string name="status_patch_prefix">Patch level:</string>
+
+    <string name="loading">Loading…</string>
+    <string name="error_generic">Something went wrong while displaying this screen.</string>
+    <string name="retry">Retry</string>
+    <string name="a11y_state_icon">State icon</string>
+</resources>

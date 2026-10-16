@@ -90,6 +90,31 @@ REQUIRED=(
   tests/automation/README.md
   tests/automation/run_automation_tests.sh
   tests/automation/test_rule_engine.py
+  docs/phase3/PHASE3_BASELINE.md
+  docs/phase3/IMPLEMENTED_COMPONENTS.md
+  docs/phase3/BUILD_AND_TEST.md
+  docs/phase3/AOSP_INTEGRATION_STATUS.md
+  docs/phase3/SECURITY_REVIEW.md
+  docs/phase3/KNOWN_LIMITATIONS.md
+  docs/phase3/PHASE3_TEST_REPORT.md
+  components/README.md
+  components/foundation/src/main/kotlin/com/drs/os/foundation/KvStore.kt
+  components/foundation/src/main/kotlin/com/drs/os/foundation/MiniJson.kt
+  components/engine-core/src/main/kotlin/com/drs/os/engine/Evaluator.kt
+  components/engine-core/src/main/kotlin/com/drs/os/engine/host/Host.kt
+  components/security-core/src/main/kotlin/com/drs/os/security/Evaluator.kt
+  components/security-core/src/main/kotlin/com/drs/os/security/Checklist.kt
+  components/settings-core/src/main/kotlin/com/drs/os/settings/Settings.kt
+  packages/apps/DRSSecurityCenter/app/src/main/AndroidManifest.xml
+  packages/apps/DRSAutomation/app/src/main/AndroidManifest.xml
+  packages/apps/DRSSettings/app/src/main/AndroidManifest.xml
+  packages/apps/DRSAutomation/app/src/test/kotlin/com/drs/os/automation/RuleStoreCodecTest.kt
+  platform/integration/README.md
+  build/scripts/run_core_tests.sh
+  build/scripts/check_phase3_code.sh
+  tools/automation-reference/generate_test_vectors.py
+  tools/automation-reference/test_vectors.json
+  docs/decisions/ADR-0005-kotlin-core-module-strategy.md
 )
 for rel in "${REQUIRED[@]}"; do
   f="$ROOT/$rel"
@@ -197,7 +222,14 @@ ALLOWED_HOSTS='source.android.com
 android.googlesource.com
 www.apache.org
 editorconfig.org
-git.invalid'
+git.invalid
+schemas.android.com
+github.com
+objects.githubusercontent.com
+repo1.maven.org
+services.gradle.org
+download.gradle.org
+dl.google.com'
 unknown_hosts="$(grep -rhoE 'https?://[A-Za-z0-9.-]+' --exclude-dir=.git "$ROOT" 2>/dev/null \
   | sed -E 's#^https?://##; s#\.+$##' | sort -u \
   | while IFS= read -r h; do
@@ -258,7 +290,7 @@ else
 fi
 
 section "Sub-checks"
-for checker in check_manifests.sh check_sepolicy.sh check_license_headers.sh run_automation_tests.sh; do
+for checker in check_manifests.sh check_sepolicy.sh check_license_headers.sh run_automation_tests.sh check_phase3_code.sh run_core_tests.sh; do
   case "$checker" in
     run_automation_tests.sh) s="$ROOT/tests/automation/$checker";;
     *) s="$ROOT/build/scripts/$checker";;

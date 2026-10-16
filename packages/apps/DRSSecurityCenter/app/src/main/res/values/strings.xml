@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!--
+  Arabic is the DEFAULT locale for DRS OS (values/). English lives in
+  values-en/. The ar/en parity checker (check_phase3_code.sh) enforces
+  identical key sets in both files.
+-->
+<resources>
+    <string name="app_name">مركز أمان DRS</string>
+
+    <!-- navigation -->
+    <string name="nav_dashboard">الرئيسية</string>
+    <string name="nav_checklist">قائمة الفحوصات</string>
+    <string name="nav_privacy">الخصوصية</string>
+    <string name="nav_status">حالة النظام</string>
+
+    <!-- the four honest states -->
+    <string name="state_pass">ناجح</string>
+    <string name="state_warning">تنبيه</string>
+    <string name="state_unavailable">غير متاح</string>
+    <string name="state_notchecked">لم يُفحص</string>
+
+    <!-- dashboard banner (never color-only: icon + text) -->
+    <string name="banner_pass">كل الفحوصات المتاحة ناجحة</string>
+    <string name="banner_warning">توجد نقطة تستحق الانتباه</string>
+    <string name="banner_unavailable">لا يمكن التحقق من بعض الحالات في هذه البيئة</string>
+    <string name="banner_notchecked">لم يبدأ الفحص بعد</string>
+
+    <!-- check titles -->
+    <string name="check_screen_lock_title">قفل الشاشة</string>
+    <string name="check_device_encryption_title">تشفير الجهاز</string>
+    <string name="check_security_patch_level_title">مستوى تصحيح الأمان</string>
+    <string name="check_verified_boot_title">التحقق من الإقلاع</string>
+    <string name="check_permissions_inventory_title">جرد أذونات التطبيقات</string>
+    <string name="check_automation_rules_review_title">مراجعة قواعد الأتمتة</string>
+
+    <!-- check details: screen_lock -->
+    <string name="check_screen_lock_pass_detail">قفل الشاشة مُفعّل ومعدّ بشكل سليم.</string>
+    <string name="check_screen_lock_warning_detail">لا يوجد قفل شاشة معدّ. يُنصح بإعداد قفل (رقم أو نمط أو بصمة).</string>
+    <string name="check_screen_lock_unavailable_detail">تعذّر قراءة حالة قفل الشاشة في هذه البيئة.</string>
+    <string name="check_screen_lock_notchecked_detail">لم يتم فحص قفل الشاشة في هذه الجلسة.</string>
+
+    <!-- check details: device_encryption -->
+    <string name="check_device_encryption_pass_detail">تشفير وحدة التخزين مفعّل.</string>
+    <string name="check_device_encryption_warning_detail">تشفير وحدة التخزين غير مفعّل.</string>
+    <string name="check_device_encryption_unavailable_detail">تعذّر قراءة حالة التشفير في هذه البيئة.</string>
+    <string name="check_device_encryption_notchecked_detail">لم يتم فحص التشفير في هذه الجلسة.</string>
+
+    <!-- check details: security_patch_level -->
+    <string name="check_security_patch_level_pass_detail">النظام يبلّغ عن مستوى تصحيح أمان حديث.</string>
+    <string name="check_security_patch_level_warning_detail">النظام لم يبلّغ عن مستوى تصحيح أمان.</string>
+    <string name="check_security_patch_level_unavailable_detail">تعذّرت قراءة مستوى التصحيح في هذه البيئة.</string>
+    <string name="check_security_patch_level_notchecked_detail">لم يتم فحص مستوى التصحيح في هذه الجلسة.</string>
+
+    <!-- check details: verified_boot -->
+    <string name="check_verified_boot_pass_detail">سلسلة الإقلاع مُتحقق منها (حالة خضراء).</string>
+    <string name="check_verified_boot_warning_detail">حالة التحقق من الإقلاع تستحق المراجعة.</string>
+    <string name="check_verified_boot_unavailable_detail">قراءة حالة التحقق من الإقلاع متطلب تكامل على مستوى النظام، وغير متاحة لتطبيق مستقل.</string>
+    <string name="check_verified_boot_notchecked_detail">لم يتم فحص حالة الإقلاع في هذه الجلسة.</string>
+
+    <!-- check details: permissions_inventory -->
+    <string name="check_permissions_inventory_pass_detail">بيانات استخدام الأذونات قابلة للقراءة.</string>
+    <string name="check_permissions_inventory_warning_detail">بيانات استخدام الأذونات موجودة لكنها تستوجب المراجعة.</string>
+    <string name="check_permissions_inventory_unavailable_detail">واجهات جرد الأذونات مميّزة (privileged) ولا يمكن لتطبيق مستقل الوصول إليها؛ سيتوفر هذا الفحص بعد التكامل مع منصة النظام.</string>
+    <string name="check_permissions_inventory_notchecked_detail">لم يبدأ جرد الأذونات في هذه الجلسة.</string>
+
+    <!-- check details: automation_rules_review -->
+    <string name="check_automation_rules_review_pass_detail">قواعد الأتمتة قابلة للقراءة والمراجعة.</string>
+    <string name="check_automation_rules_review_warning_detail">هناك قواعد أتمتة تستوجب المراجعة.</string>
+    <string name="check_automation_rules_review_unavailable_detail">حالة قواعد الأتمتة موجودة في تطبيق DRS Automation؛ مسار القراءة بين التطبيقات لم يُنفَّذ بعد.</string>
+    <string name="check_automation_rules_review_notchecked_detail">لم تبدأ مراجعة قواعد الأتمتة في هذه الجلسة.</string>
+
+    <!-- privacy screen -->
+    <string name="privacy_title">الخصوصية</string>
+    <string name="privacy_what_this_app_can_inspect">ما يمكن لهذا التطبيق فحصه الآن</string>
+    <string name="privacy_no_permissions_requested">هذا التطبيق لا يطلب أي أذونات في هذه النسخة؛ يقرأ فقط واجهات لا تحتاج أذونات، ويوضّح ما لا يمكنه قراءته بدل الادعاء الزائف.</string>
+    <string name="privacy_device_settings">إعدادات الخصوصية في النظام</string>
+    <string name="privacy_device_settings_hint">اختصارات تفتح إعدادات النظام نفسها — لا يقرأ هذا التطبيق أي بيانات منها.</string>
+    <string name="privacy_open_system_settings">إعدادات النظام</string>
+    <string name="privacy_open_security_settings">إعدادات الأمان</string>
+    <string name="privacy_open_privacy_settings">لوحة الخصوصية</string>
+    <string name="privacy_open_unavailable">هذه الشاشة غير متاحة على هذا الجهاز</string>
+
+    <!-- status screen -->
+    <string name="status_title">حالة النظام</string>
+    <string name="status_source_note">كل قيمة أدناه مقروءة من واجهة نظام حقيقية، ومصدرها مذكور معها. ما لا يمكن قراءته يُعرض كـ«غير متاح» مع السبب.</string>
+    <string name="status_row_device_secure">قفل الشاشة (KeyguardManager)</string>
+    <string name="status_row_encryption">تشفير التخزين (DevicePolicyManager)</string>
+    <string name="status_row_patch">مستوى التصحيح (Build.VERSION.SECURITY_PATCH)</string>
+    <string name="status_row_verified_boot">التحقق من الإقلاع (منصة النظام)</string>
+    <string name="status_row_permissions">استخدام الأذونات (Privileged)</string>
+    <string name="status_row_automation">قواعد الأتمتة (DRS Automation)</string>
+    <string name="status_value_true">مفعّل</string>
+    <string name="status_value_false">غير مفعّل</string>
+    <string name="status_unavailable">غير متاح</string>
+    <string name="status_patch_prefix">مستوى التصحيح:</string>
+
+    <!-- shared states -->
+    <string name="loading">جارٍ التحميل…</string>
+    <string name="error_generic">حدث خطأ أثناء عرض هذه الشاشة.</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="a11y_state_icon">أيقونة الحالة</string>
+</resources>

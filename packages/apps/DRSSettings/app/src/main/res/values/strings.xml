@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- Arabic DEFAULT locale. -->
+<resources>
+    <string name="app_name">إعدادات DRS</string>
+
+    <string name="settings_title">إعدادات DRS OS</string>
+    <string name="entry_language">اللغة</string>
+    <string name="entry_theme">المظهر</string>
+    <string name="entry_privacy_security">الخصوصية والأمان</string>
+    <string name="entry_automation">الأتمتة</string>
+    <string name="entry_about">حول DRS OS</string>
+
+    <string name="language_title">اللغة</string>
+    <string name="language_arabic">العربية (الافتراضية)</string>
+    <string name="language_english">English</string>
+    <string name="language_hint">تُطبَّق اللغة على تطبيقات DRS فوراً عبر خاصية اللغة لكل تطبيق.</string>
+
+    <string name="theme_title">المظهر</string>
+    <string name="theme_system">حسب النظام</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
+    <string name="theme_hint">الثيمات محصورة في المتغيرات المُتحقَّق تباينها في colors.md؛ لا يمكن اختيار تركيبة فاشلة.</string>
+
+    <string name="privacy_security_title">الخصوصية والأمان</string>
+    <string name="privacy_security_open_center">فتح مركز أمان DRS</string>
+    <string name="privacy_security_center_missing">تطبيق مركز أمان DRS غير مثبّت على هذا الجهاز.</string>
+    <string name="privacy_security_open_system">فتح إعدادات النظام</string>
+    <string name="privacy_shortcuts_note">الاختصارات تفتح التطبيقات/الشاشات نفسها فقط؛ لا يحتفظ هذا التطبيق بأي بيانات منها.</string>
+
+    <string name="automation_title">الأتمتة</string>
+    <string name="automation_master">السماح بقواعد الأتمتة</string>
+    <string name="automation_dry_run_default">التشغيل الجاف أولاً (افتراضي للتشغيل الجديد)</string>
+    <string name="automation_scope_note">هذه التفضيلات تُحفظ محلياً في هذا التطبيق (الإصدار الأول). متجر سياسات مشترك بين تطبيقات DRS يتطلب تكامل منصة وسيُنفَّذ لاحقاً.</string>
+    <string name="automation_state_on">مسموح</string>
+    <string name="automation_state_off">غير مسموح</string>
+
+    <string name="about_title">حول DRS OS</string>
+    <string name="about_version">إصدار التطبيق:</string>
+    <string name="about_version_code">رقم الإصدار:</string>
+    <string name="about_policy_ai">هذا النظام لا يستخدم أي ذكاء اصطناعي أو تعلّم آلي — كل القرارات قواعد حتمية معلنة (سياسة ADR-0004).</string>
+    <string name="about_provenance_note">تفاصيل الإصدار (وقت البناء ومرجع المستودع) تُضيفها خط البناء عند التكامل مع المنصة؛ هذه النسخة المستقلة تعرض رقم الإصدار فقط.</string>
+    <string name="about_notice">يعتمد DRS OS على مشروع مصدر مفتوح Android (AOSP). علامة Android التجارية ملك لشركة Google وليست جزءاً من هوية DRS.</string>
+
+    <string name="error_store_write_failed">تعذّر حفظ الإعداد محلياً — لم يُطبَّق التغيير.</string>
+    <string name="recovered_from_corrupted">تمت استعادة الإعدادات الافتراضية لأن البيانات المحفوظة كانت تالفة.</string>
+</resources>
