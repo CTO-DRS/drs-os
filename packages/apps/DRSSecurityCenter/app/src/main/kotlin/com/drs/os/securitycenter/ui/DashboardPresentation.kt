@@ -7,6 +7,7 @@
  */
 package com.drs.os.securitycenter.ui
 
+import com.drs.os.securitycenter.R
 import com.drs.os.security.CheckDataProvider
 import com.drs.os.security.ChecklistEvaluator
 import com.drs.os.security.ChecklistPresenter

@@ -40,6 +40,18 @@ and pinned by unit tests in tests/automation/.
    branding/typography.md; none are redistributed yet — entries appear
    here only when binary inclusion actually happens.
 
+## Phase 4 toolchain (installed 2026-10-17, outside the repository)
+
+| Artifact | Version | Size (B) | Integrity / verification |
+|---|---|---|---|
+| Temurin JDK 17 (tarball, tools/jdk17.tar.gz) | 17.0.20.1+1 | 193,252,603 | `java -version` output recorded; downloaded via api.adoptium.net (provenance row added) |
+| Gradle (tools/gradle-8.9-bin.zip) | 8.9 | 136,114,148 | SHA-256 verified against official `gradle-8.9-bin.zip.sha256` (sha256sum -c → OK) |
+| Android cmdline-tools (android-sdk/, outside tools/) | 12.0 | 153,607,504 zip | dl.google.com artifact; `sdkmanager --version` = 12.0 |
+| SDK packages (android-sdk/) | platform-35, build-tools 35.0.0, platform-tools | 458 MB installed | aapt2 2.19-11948202; licenses accepted |
+
+Used for the Phase 4 builds recorded in docs/phase4/BUILD_RESULTS.md.
+None of these are vendored into the repository or shipped in archives.
+
 ## Removal
 
 Dependencies are removed when their consumer feature is removed; the

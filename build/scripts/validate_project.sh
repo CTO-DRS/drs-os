@@ -174,7 +174,7 @@ if [ -n "$ep" ]; then
 else
   pass "no AI/cloud API endpoints referenced"
 fi
-dep_files="$(find "$ROOT" -type f \( -name 'Android.bp' -o -name '*.mk' -o -name 'build.gradle*' -o -name 'package.json' -o -name 'requirements.txt' -o -name 'pom.xml' -o -name 'Cargo.toml' \) -not -path '*/.git/*' 2>/dev/null || true)"
+dep_files="$(find "$ROOT" \( -type d \( -name build -o -name .gradle \) -prune \) -o \( -type f \( -name 'Android.bp' -o -name '*.mk' -o -name 'build.gradle*' -o -name 'package.json' -o -name 'requirements.txt' -o -name 'pom.xml' -o -name 'Cargo.toml' \) -not -path '*/.git/*' -print \) 2>/dev/null || true)"
 if [ -z "$dep_files" ]; then
   skip "no dependency manifests exist yet — AI-SDK dependency scan not applicable (reported, not passed silently)"
 else
@@ -229,8 +229,9 @@ objects.githubusercontent.com
 repo1.maven.org
 services.gradle.org
 download.gradle.org
-dl.google.com'
-unknown_hosts="$(grep -rhoE 'https?://[A-Za-z0-9.-]+' --exclude-dir=.git "$ROOT" 2>/dev/null \
+dl.google.com
+api.adoptium.net'
+unknown_hosts="$(grep -rhoE 'https?://[A-Za-z0-9.-]+' --exclude-dir=.git --exclude-dir=build --exclude-dir=.gradle "$ROOT" 2>/dev/null \
   | sed -E 's#^https?://##; s#\.+$##' | sort -u \
   | while IFS= read -r h; do
       printf '%s\n' "$ALLOWED_HOSTS" | grep -qxF "$h" || echo "$h"

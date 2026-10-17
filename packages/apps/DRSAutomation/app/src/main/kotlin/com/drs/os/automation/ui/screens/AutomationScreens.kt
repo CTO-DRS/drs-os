@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.weight
+// NOTE: Modifier.weight is a RowScope/ColumnScope member — it must NOT
+// be imported as a top-level symbol (that resolves to the file-internal
+// RowColumnParentData.weight extension and fails to compile).
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -320,7 +322,9 @@ private fun RuleEditorScreen(
         if (errorKeys.isNotEmpty()) {
             item {
                 Text(
-                    errorKeys.joinToString("\n") { stringResource(it) },
+                    // Compose: stringResource is @Composable — map first,
+                    // then join (a joinToString lambda is not composable).
+                    errorKeys.map { stringResource(it) }.joinToString("\n"),
                     style = MaterialTheme.typography.bodyMedium
                 )
             }

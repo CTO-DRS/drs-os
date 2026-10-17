@@ -1,5 +1,13 @@
 # Phase 3 — Build and Test Instructions
 
+> **STATUS UPDATE (Phase 4, 2026-10-17):** the "BUILD NOT VERIFIED"
+> labels in this document are historical. The three apps are now
+> **BUILD VERIFIED — RUNTIME NOT VERIFIED** (real Gradle/AGP/SDK builds,
+> debug APKs, defect ledger D-1..D-10). Current records:
+> docs/phase4/BUILD_RESULTS.md and docs/phase4/TEST_RESULTS.md. This
+> document is preserved unchanged below for history.
+
+
 Status: instructions + what was ACTUALLY executed in the Phase 3
 sandbox (2026-10-16). Execution records live in
 docs/phase3/PHASE3_TEST_REPORT.md; this file is the reproducible path.

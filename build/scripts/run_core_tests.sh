@@ -57,9 +57,9 @@ fi
 # module_dir | extra compile classpath
 MODULES=(
     "components/foundation:"
-    "components/engine-core:components/foundation/build/classes"
+    "components/engine-core:components/foundation/build/kotlinc/classes"
     "components/security-core:"
-    "components/settings-core:components/foundation/build/classes"
+    "components/settings-core:components/foundation/build/kotlinc/classes"
 )
 
 note "== Kotlin core tests (JVM, kotlinc 2.0.21 + JUnit Platform 1.10.2) =="
@@ -68,7 +68,10 @@ for entry in "${MODULES[@]}"; do
     module="${entry%%:*}"
     extra_cp="${entry#*:}"
     name="$(basename "$module")"
-    out="$module/build/classes"
+    # kotlinc output lives under build/kotlinc/ so it never mixes with
+    # Gradle's own build/classes layout (Phase 4: components are also
+    # Gradle subprojects now; keep the two runners' outputs separate).
+    out="$module/build/kotlinc/classes"
     rm -rf "$out"
     mkdir -p "$out"
     cp="$JUNIT_JAR"
@@ -87,7 +90,7 @@ for entry in "${MODULES[@]}"; do
     test_output="$(java -Ddrs.vectors="$REPO_ROOT/tools/automation-reference/test_vectors.json" \
         -jar "$JUNIT_JAR" execute \
         -cp "$out:$KOTLIN_STDLIB:$extra_cp" \
-        --scan-classpath --fail-if-no-tests --details=summary 2>&1)"
+        --scan-classpath "$out" --fail-if-no-tests --details=summary 2>&1)"
     test_rc=$?
     succeeded="$(printf '%s\n' "$test_output" | sed -n 's/^\[[^0-9]*\([0-9][0-9]*\) tests successful.*/\1/p')"
     failed="$(printf '%s\n' "$test_output" | sed -n 's/^\[[^0-9]*\([0-9][0-9]*\) tests failed.*/\1/p')"

@@ -28,7 +28,7 @@ done < <(find "$ROOT" -type f -name '*.sh' -not -path '*/.git/*' -print0 2>/dev/
 echo "checked ${count} script(s)"
 
 echo "== 2. line endings (no CRLF) =="
-crlf="$(grep -rIl $'\r' --exclude-dir=.git "$ROOT" 2>/dev/null || true)"
+crlf="$(grep -rIl $'\r' --exclude-dir=.git --exclude-dir=build --exclude-dir=.gradle "$ROOT" 2>/dev/null || true)"
 if [ -n "$crlf" ]; then
   fail "CRLF line endings found in:"
   printf '%s\n' "$crlf"
@@ -37,7 +37,7 @@ else
 fi
 
 echo "== 3. oversized files (> 1 MiB) =="
-big="$(find "$ROOT" -type f -size +1M -not -path '*/.git/*' 2>/dev/null || true)"
+big="$(find "$ROOT" \( -type d \( -name build -o -name .gradle \) -prune \) -o \( -type f -size +1M -not -path '*/.git/*' -print \) 2>/dev/null || true)"
 if [ -n "$big" ]; then
   fail "oversized files present (repository is text-only by design):"
   printf '%s\n' "$big"
@@ -47,7 +47,7 @@ fi
 
 echo "== 4. secret scan =="
 # Self-scan safe: pattern literals cannot match themselves.
-sec="$(grep -rInE --exclude-dir=.git \
+sec="$(grep -rInE --exclude-dir=.git --exclude-dir=build --exclude-dir=.gradle \
   -e 'ghp_[A-Za-z0-9]{36}' \
   -e 'gho_[A-Za-z0-9]{36}' \
   -e 'ghs_[A-Za-z0-9]{36}' \

@@ -65,14 +65,19 @@ Allowlist additions, with reasons:
 | `schemas.android.com` | XML namespace identifier in Android manifests/resources (`xmlns:android`, `xmlns:tools`) — an identifier, never fetched | n/a (identifier) |
 | `github.com` + `objects.githubusercontent.com` | Kotlin compiler 2.0.21 release download (JetBrains) | HTTPS 200 + SHA-256 verified |
 | `repo1.maven.org` | JUnit Platform console standalone 1.10.2 (Maven Central) | HTTPS 200 + SHA-256 verified |
-| `services.gradle.org`, `download.gradle.org`, `dl.google.com` | documented future Android build hosts (SDK/Gradle distributions); probed reachable (200) in Phase 3, nothing downloaded | probed only |
+| `services.gradle.org`, `download.gradle.org`, `dl.google.com` | documented future Android build hosts (SDK/Gradle distributions); probed reachable (200) in Phase 3 | probed only → **Phase 4: actually used** (see below) |
+| `api.adoptium.net` | Eclipse Temurin JDK 17.0.20.1+1 tarball (redirects to Adoptium GitHub releases) — the full JDK (javac) required by AGP 8.7.3; the host JRE 21 has no compiler | Phase 4: downloaded 193,252,603 B, version string verified via `java -version`; outside the repo in tools/ |
 
-Toolchain artifacts (downloaded OUTSIDE the repository, hashed in
-tools/README.md): kotlin-compiler-2.0.21.zip (85,822,011 B),
+Phase 4 toolchain actually resolved and used (all outside the repo, none
+vendored): Temurin JDK 17.0.20.1+1 (api.adoptium.net), Gradle 8.9
+(services.gradle.org, sha256 verified against the official .sha256),
+Android cmdline-tools 12.0 + platform-35 + build-tools 35.0.0 +
+platform-tools (dl.google.com), AGP 8.7.3 / Kotlin 2.0.21 / Compose BOM
+2024.12.01 / androidx artifacts (google() = dl.google.com, mavenCentral()
+= repo1.maven.org). Hashes and sizes: docs/phase4/TOOLCHAIN_REPORT.md §2
+and docs/phase4/BUILD_RESULTS.md §5.
+
+Toolchain artifacts downloaded in Phase 3 (OUTSIDE the repository, hashed
+in tools/README.md): kotlin-compiler-2.0.21.zip (85,822,011 B),
 junit-platform-console-standalone-1.10.2.jar (2,680,679 B). Neither is
 vendored, redistributed, or a product dependency.
-
-Future Android build dependencies (AGP/Compose/androidx) are pinned as
-versions in `gradle/libs.versions.toml` catalogs but were NOT resolved
-or downloaded (no Android SDK in the sandbox). Their first real
-resolution happens on a capable build host, recorded here afterwards.

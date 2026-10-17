@@ -49,8 +49,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":foundation"))
-    implementation(project(":security-core"))
+    // Composite included-build coordinate (auto-substituted; Phase 4 D-1 fix).
+    implementation("com.drs.os:foundation:0.3.0")
+    // Composite included-build coordinate (auto-substituted; Phase 4 D-1 fix).
+    implementation("com.drs.os:security-core:0.3.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)

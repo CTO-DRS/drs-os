@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 // DRS OS Automation — standalone app (Phase 3)
 //
-// Build status: SOURCE IMPLEMENTED — BUILD NOT VERIFIED in the Phase 3
-// sandbox (no Android SDK). Prerequisites: JDK 17, Android SDK platform
-// 35 + build-tools, AGP 8.7.3 via Gradle 8.9+ (docs/phase3/BUILD_AND_TEST.md).
+// Build status: builds are verified in docs/phase4/BUILD_RESULTS.md
+// (Phase 4 installed the real toolchain; Phase 3 had no Android SDK).
 pluginManagement {
     repositories {
         google()
@@ -22,7 +21,18 @@ rootProject.name = "DRSAutomation"
 
 include(":app")
 
-include(":foundation")
-project(":foundation").projectDir = file("../../../components/foundation")
-include(":engine-core")
-project(":engine-core").projectDir = file("../../../components/engine-core")
+// Shared pure-Kotlin modules, tested on the JVM. Consumed as COMPOSITE
+// included builds with explicit dependency substitution (Phase 4, D-1
+// fix): projectDir subprojects outside the consumer's root dir expose
+// no variants on Gradle 8.9 ("No variants exist", verified empirically).
+// See components/*/build.gradle.kts for the full rationale.
+includeBuild("../../../components/foundation") {
+    dependencySubstitution {
+        substitute(module("com.drs.os:foundation")).using(project(":"))
+    }
+}
+includeBuild("../../../components/engine-core") {
+    dependencySubstitution {
+        substitute(module("com.drs.os:engine-core")).using(project(":"))
+    }
+}

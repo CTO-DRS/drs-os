@@ -27,7 +27,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.drs.os.securitycenter.platform.AndroidCheckProvider
-import com.drs.os.securitycenter.ui.ChecklistViewModel
+import com.drs.os.securitycenter.ui.screens.ChecklistViewModel
 import com.drs.os.securitycenter.ui.theme.DrsTheme
 import com.drs.os.securitycenter.ui.screens.ChecklistScreen
 import com.drs.os.securitycenter.ui.screens.DashboardScreen
