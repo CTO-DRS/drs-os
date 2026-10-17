@@ -81,3 +81,27 @@ Toolchain artifacts downloaded in Phase 3 (OUTSIDE the repository, hashed
 in tools/README.md): kotlin-compiler-2.0.21.zip (85,822,011 B),
 junit-platform-console-standalone-1.10.2.jar (2,680,679 B). Neither is
 vendored, redistributed, or a product dependency.
+
+## Phase 5 additions (2026-10-17) — Robolectric no-device CI layer
+
+Test-only dependencies (never packaged into any APK; testImplementation /
+testRuntimeOnly only), pinned in both apps' `gradle/libs.versions.toml`
+with the same versions:
+
+| Artifact | Version | Source host | Why |
+|---|---|---|---|
+| `org.robolectric:robolectric` | 4.14.1 | repo1.maven.org (mavenCentral) | JVM-simulated Android for the no-device CI layer (PHASE4_FINAL_REPORT §13 item 2) |
+| `androidx.test.ext:junit` | 1.2.1 | dl.google.com (google) | AndroidJUnit4 runner bridging Robolectric into JUnit4 |
+| `androidx.compose.ui:ui-test-junit4` | 1.7.6 via BOM 2024.12.01 | dl.google.com (google) | Compose test APIs (createAndroidComposeRule, matchers) |
+| `org.junit.vintage:junit-vintage-engine` | 5.10.2 | repo1.maven.org (mavenCentral) | Runs the JUnit4/Robolectric suites on the same JUnit Platform as the Jupiter suites |
+
+Runtime-resolved during the first Robolectric test run (Robolectric's own
+dependency fetch, cached outside the repo): `org.robolectric:android-all-
+instrumented` artifacts for the emulated SDK levels, fetched from
+repo1.maven.org by Robolectric itself — free, standard, recorded here for
+completeness.
+
+Pin discipline: no existing pin was changed; the new pins keep the
+catalogs of DRSSettings and DRSAutomation in lockstep (checked by
+check_phase3_code.sh catalog consistency). DRSSecurityCenter received no
+new dependencies (its logic is covered by security-core JVM tests).

@@ -3,6 +3,13 @@
 Every limitation is stated with its consequence and its removal path.
 Nothing here is hidden behind a PASS label elsewhere.
 
+> **PHASE 5 UPDATE (2026-10-17):** the Robolectric no-device CI layer
+> (11 tests, docs/phase5/PHASE5_REPORT.md) narrows but does NOT close
+> the runtime gap below — Robolectric is a JVM simulation, not device
+> runtime. Device/emulator items remain BLOCKED as stated. New
+> Robolectric-specific limitations are listed in the Phase 5 report
+> §5 (LocaleManager shadow on SDK 33+, JVM-only graphics).
+
 ## 1. Runtime verification gap (the defining limitation)
 
 The three APKs are **BUILD VERIFIED — RUNTIME NOT VERIFIED**. No launch,

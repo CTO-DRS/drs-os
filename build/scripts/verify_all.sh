@@ -24,7 +24,10 @@ pass=0; fail=0; blocked=0
 note() { printf '%s\n' "$*"; }
 run() { # run <label> <cmd...>
     local label="$1"; shift
-    printf '--- %s\n' "$label"
+    # "--" guards against labels beginning with "-" (e.g. Gradle task
+    # names like ":app:assembleDebug" are fine, but a label starting
+    # with a dash would be parsed as printf options — Phase 5 fix).
+    printf -- '--- %s\n' "$label"
     if "$@" > /tmp/drs_verify_out.$$ 2>&1; then
         printf 'PASS  %s\n' "$label"; pass=$((pass + 1))
     else

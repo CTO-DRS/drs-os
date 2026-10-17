@@ -111,41 +111,105 @@ testable components. Delivered (details and evidence in docs/phase3/):
 Blocked-on (honest): Android SDK host (app builds), compliant AOSP host
 (platform integration), DRS repository authorization (remotes).
 
-## Phase 4 — Checkout & first boot (PROPOSED — requires authorization)
+## Phase 4 — Build verification, runtime-tooling ground truth & AOSP integration readiness (COMPLETE, 2026-10-17)
 
-Goal: execute the gated checkout on a compliant host. Prerequisites:
-host checklist passed, DRS remotes authorized and verified, branch
-re-verified, manifest SHA pinned. Proposed work items:
+Authorized directive: "BUILD VERIFICATION, RUNTIME TESTING & AOSP
+INTEGRATION" — verification first, no new prototypes. (The earlier
+*proposal* named "Checkout & first boot" for Phase 4; the owner's
+authorized scope replaced it. Checkout/first-boot work moved to the
+next-phase proposal below, still blocked on a compliant host.)
 
-1. **Host preparation checklist run-through** (docs/build/prerequisites.md)
-   on the target development host; record tool versions into the decision
-   log; no downloads in this sandbox.
-2. **Manifest finalization once remotes exist.** DRS-owned Git repositories
-   do not exist yet; creating them needs authorization. When authorized:
-   create repositories, replace the `.invalid` placeholders in
-   `manifests/local_manifests/drs-os-local.xml`, re-run
-   `build/scripts/check_manifests.sh`, and pin explicit revisions.
-3. **Branch re-verification at integration time.** Confirm that
-   `android-latest-release` still resolves to the expected revision
-   (Phase 0 verified `android17-release` on 2026-10-16); record the exact
-   manifest commit SHA that will be pinned (ADR-0001).
-4. **Cuttlefish target confirmation.** Confirm the exact lunch target
-   string from the checked-out tree (Phase 0 did not invent one; the AOSP
-   documentation lists Cuttlefish targets, but the authoritative string
-   must be read from the tree before pinning).
-5. **Static tooling hardening.** Extend the secret scan and manifest
-   validation based on lessons from the first real local-manifest; add
-   device-layer template checks only when device files actually appear.
-6. **Design-spec deepening.** Convert the Security & Privacy Center and
-   Quick Settings specifications into concrete overlay resource plans
-   (string/resource inventories) so implementation can start immediately
-   after the first successful build.
-7. **Security test scaffolding** under tests/security/ (checklist-based
-   review gates for future SELinux and permission changes).
+Delivered (details and evidence in docs/phase4/):
 
-Explicitly out of scope until Phase 4 is authorized: full AOSP sync
-(requires compliant host + authorization), any signing-key generation,
-any public repository publication, any cloud account creation.
+- **Free toolchain installed and measured** (outside the repo, with
+  provenance): Temurin JDK 17.0.20.1+1, Gradle 8.9 (official SHA-256
+  verified), Android cmdline-tools 12.0, platform-35, build-tools
+  35.0.0, platform-tools; licenses accepted.
+- **Three real debug APKs built independently** (DRSSettings,
+  DRSAutomation, DRSSecurityCenter — all exit 0), aapt2-badging and
+  apksigner-verified; hashes recorded in BUILD_RESULTS.md.
+- **10 real build-system defects found and fixed** (D-1..D-10,
+  including a Kotlin block-comment nesting bug that silently swallowed
+  build files, and a class referenced but never written).
+- **147 unique tests, 0 failures** across two runners (kotlinc+JUnit
+  console and Gradle), plus per-app Gradle unit tests; honest NOT
+  RUN/BLOCKED labels for everything a device would be needed for
+  (no KVM in the sandbox — instrumented tests and screenshots remain
+  blocked with exact host commands recorded).
+- **Security audit** with explicit non-claims; **AOSP integration
+  status honestly NOT STARTED** (six falsification criteria listed);
+  new scripts check_phase4_build.sh / verify_all.sh /
+  inventory_artifacts.sh; 8 documents in docs/phase4/.
+
+Blocked-on (honest): KVM-capable host (runtime verification), DRS
+component remotes decision, compliant AOSP host (platform
+integration). Commit identity was still the sandbox preset at this
+point — replaced in Phase 5.
+
+## Phase 5 — No-device CI layer, publication hygiene & scheduler decision (COMPLETE, 2026-10-17)
+
+Authorized directive: "Complete everything" — execute every remaining
+item that the environment supports, with honest labels for the rest.
+Delivered (details and evidence in docs/phase5/PHASE5_REPORT.md):
+
+- **Robolectric no-device CI layer** (final report item 2): pinned
+  Robolectric 4.14.1 + androidx.test.ext:junit 1.2.1 + compose
+  ui-test-junit4 (BOM) + junit-vintage-engine 5.10.2. **11 new tests,
+  all green**: DRSSettings 8 (Arabic default with RTL geometry,
+  English switch through the real AppCompatDelegate pipeline to
+  EN/LTR, end-to-end corrupted-store recovery banner, automation
+  master toggle persisted through REAL SharedPreferences, privacy
+  "center not installed" gating, real-prefs round-trip/corruption
+  semantics) and DRSAutomation 3 (SharedPreferencesStore commit()
+  durability across instances, rule-codec round-trip through real
+  storage, corrupted-document discard). Locale/Compose classes target
+  SDK 29 deliberately — Robolectric's LocaleManager shadow on 33+
+  stores but never applies per-app locales (documented limitation);
+  the appcompat pre-T pipeline (minSdk 29) is fully observable.
+- **Defects fixed:** verify_all.sh `printf` broke on dash-prefixed
+  labels (all section headers were silently dropped); DRSSettings
+  radio/switch rows made whole-row selectable/toggleable (a11y
+  touch-target fix F-1; labels were dead zones before).
+- **Audit correction:** Phase 4's "0 permissions in all APKs" claim
+  was inaccurate — aapt2 shows the merger-injected
+  `DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` (same package,
+  protectionLevel signature) in all three debug APKs, including the
+  two whose hashes are byte-identical to Phase 4. Corrected via
+  pointer in docs/phase4/SECURITY_AUDIT.md; no app change needed.
+- **ADR-0006:** TIME_DAILY stays engine-owned; host scheduling binds
+  to WorkManager wake-ups (inexact, permission-free), exact alarms
+  rejected as permission-gated; no code change.
+- **Publication hygiene:** project Git remote live (private GitHub
+  mirror), sandbox commit identity replaced with the owner's GitHub
+  noreply identity and history re-verified on the remote.
+- verify_all.sh: **17 PASS / 0 FAIL / 2 BLOCKED** (emulator/AOSP,
+  hardware-blocked). Apps remain **BUILD VERIFIED — RUNTIME NOT
+  VERIFIED** (Robolectric is a JVM simulation, not device runtime);
+  project **NOT production-ready**.
+
+Blocked-on (unchanged, honest): KVM host for emulator runtime +
+screenshots + connected tests; compliant AOSP host for platform
+integration (Soong shims, privapp-permissions, RRO); DRS component
+repo split decision (needed only when platform integration starts;
+the manifest template's 6 component repos have no consumer before a
+compliant `repo sync` host exists).
+
+## Next phase (PROPOSED — requires authorization): checkout & first boot
+
+Carried from the original Phase 4 proposal; all items require a
+compliant host and/or explicit authorization:
+
+1. Host preparation checklist run-through (docs/build/prerequisites.md)
+   on the target development host; record tool versions.
+2. Manifest finalization once DRS component remotes are decided:
+   replace `.invalid` placeholders, re-run check_manifests.sh, pin
+   revisions.
+3. Branch re-verification at integration time (`android-latest-release`
+   → `android17-release` as of 2026-10-16) and pin the exact manifest
+   commit SHA (ADR-0001).
+4. Cuttlefish target confirmation from the checked-out tree before
+   pinning any lunch target string.
+5. Device-layer template checks once device files actually appear.
 
 ## Standing rule
 

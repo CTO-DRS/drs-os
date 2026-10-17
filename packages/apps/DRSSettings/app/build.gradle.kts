@@ -36,6 +36,15 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    testOptions {
+        unitTests {
+            // Robolectric needs the merged resources to resolve app strings.
+            isIncludeAndroidResources = true
+            all { test ->
+                test.maxHeapSize = "1024m"
+            }
+        }
+    }
 }
 
 dependencies {
@@ -59,6 +68,14 @@ dependencies {
 
     testImplementation(libs.junit.jupiter)
     testRuntimeOnly(libs.junit.platform.launcher)
+    // Robolectric no-device CI layer (Phase 5): JVM-simulated Android for
+    // Compose smoke + real-SharedPreferences persistence tests.
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.test.ext.junit)
+    testImplementation(libs.androidx.compose.ui.test.junit4)
+    // Runs the JUnit4/Robolectric suites on the same JUnit Platform as the
+    // Jupiter suites (useJUnitPlatform below).
+    testRuntimeOnly(libs.junit.vintage.engine)
 }
 
 tasks.withType<Test>().configureEach {

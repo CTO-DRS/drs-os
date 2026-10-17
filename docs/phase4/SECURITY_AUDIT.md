@@ -6,6 +6,21 @@ validator tripwires). Static scans passing does NOT prove the operating
 system is secure — that claim is impossible to make before platform
 integration and on-device verification (see §6).
 
+> **PHASE 5 CORRECTION (2026-10-17):** §1's claim of "0
+> `uses-permission` entries in each" APK is **inaccurate as stated**.
+> `aapt2 dump badging`/`dump permissions` shows one entry per APK:
+> `DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` — an auto-generated,
+> same-package custom permission (protectionLevel `signature`)
+> injected by the androidx/AGP manifest merger to protect dynamic
+> receiver registrations on Android T+. It was present in ALL THREE
+> Phase 4 APKs (two of which are byte-identical to the Phase 4
+> builds, hash-verified), so this is a documentation error, not a
+> build regression. The security posture is unchanged: zero platform
+> permissions (`android.permission.*`), signature-protected and
+> not-exported by construction. The regression guard must key on
+> `android.permission.` (platform permissions), not the bare
+> `uses-permission` tag.
+
 ## 1. Permissions (verified against the built APKs, not the source)
 
 `aapt2 dump badging` on all three debug APKs: **0 `uses-permission`

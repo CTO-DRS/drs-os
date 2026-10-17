@@ -108,3 +108,8 @@ What was actually verified (evidence, not file existence):
 What remains **NOT VERIFIED** (needs a device/emulator): real RTL
 rendering, large-font and narrow-screen behavior, process-recreation
 survival, screen-reader traversal. Listed in KNOWN_LIMITATIONS.md.
+
+> **PHASE 5 ADDITION (2026-10-17):** +11 Robolectric no-device tests
+> (DRSSettings 8, DRSAutomation 3) — full results, exact commands, and
+> the SDK-29 rationale: docs/phase5/PHASE5_REPORT.md §3. All green;
+> the totals in this document predate that layer.
